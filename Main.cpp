@@ -1,4 +1,5 @@
 #include "Main.h"
+#include <qdesktopservices.h>
 #include <qmenubar.h>
 #include <qfiledialog.h>
 #include <qstring.h>
@@ -25,6 +26,12 @@ namespace dndmap {
 		fileMenu->addAction(newMap);
 		QObject::connect(newMap, &QAction::triggered, this, &MainWindow::openNewMap);
 		this->menuBar()->addMenu(fileMenu);
+
+		aboutMenu = new QMenu("About", this);
+		QAction* license = new QAction("License", this);
+		aboutMenu->addAction(license);
+		QObject::connect(license, &QAction::triggered, this, &MainWindow::showLicense);
+		this->menuBar()->addMenu(aboutMenu);
 
 		gridToolBar = new mytoolbars::GridToolbar(this);
 		this->addToolBar(gridToolBar);
@@ -92,6 +99,11 @@ namespace dndmap {
 	void MainWindow::zoom(float factor) // calls MyGraphicsView->zoom //
 	{
 		view->zoom(factor);
+	}
+
+	void MainWindow::showLicense()
+	{
+		QDesktopServices::openUrl(QUrl::fromLocalFile("LICENSE.txt"));
 	}
 
 } // end namespace main
