@@ -28,12 +28,12 @@ namespace dndmap {
 	private:
 		graphics::MyGraphicsScene* scene;
 		graphics::MyGraphicsView* view;
-		mapwidget::MapOverlay* overlay;
 		mytoolbars::GridToolbar* gridToolBar;
 		mytoolbars::SpriteToolbar* spriteToolbar;
 		QStackedLayout* layout;
 		QMenu* fileMenu;
 		QAction* newMap;
+		QMenu* aboutMenu;
 
 	public slots:
 		void openNewMap();
@@ -42,6 +42,7 @@ namespace dndmap {
 		void addSprite(int sprite);
 		void saveSprite(const QPixmap& sprite);
 		void removeSprite(int index);
+		void showLicense();
 
 	};
 } // end namespace main
